@@ -22,7 +22,7 @@ abstract class Humanoid
             
             if( age < 12)
             {
-                showAgeExepction();
+                ShowAgeExepction();
             }
 
             age = value;
@@ -40,10 +40,7 @@ abstract class Humanoid
 
     }
 
-    public virtual void walk()
-    {
-        Console.WriteLine("Person is walking now");
-    }
+    public abstract void Walk();
 
     public void details()
     {
@@ -55,7 +52,7 @@ abstract class Humanoid
 
     }
 
-    protected void showAgeExepction()
+    protected void ShowAgeExepction()
     {
         throw new Exception("O humano não pode ser uma criança");
     }
@@ -71,14 +68,14 @@ class Human : Humanoid
         if( age < 12)
         {
 
-            base.showAgeExepction();
+            base.ShowAgeExepction();
 
         }
 
         base.age = age;
     }
 
-    public override void walk()
+    public override void Walk()
     {
 
         Console.WriteLine("Human is walking now");
