@@ -14,7 +14,7 @@ abstract class Humanoid
 
     protected float power = 2f;
 
-    public int Age
+    public virtual int Age
     {
         get { return age; }
         
@@ -31,7 +31,7 @@ abstract class Humanoid
 
     }
 
-    public string Name
+    public virtual string Name
     {
 
         get { return name; }
@@ -42,9 +42,9 @@ abstract class Humanoid
 
     public abstract void Walk();
 
-    public void details()
+    public void Details()
     {
-        Console.WriteLine($"My name is {name} and i'm {age} age");
+        Console.WriteLine($"Olá, meu nome é {name} e eu tenho {age} anos");
     }
 
     public virtual void attack()
@@ -54,12 +54,29 @@ abstract class Humanoid
 
     protected void ShowAgeExepction()
     {
-        throw new Exception("O humano não pode ser uma criança");
+        throw new Exception("O humanoide não pode ser uma criança");
     }
 }
 
 class Human : Humanoid
 {
+    public override int Age
+    {
+        get { return age; }
+
+        set
+        {
+
+            if (age < 12)
+            {
+                ShowAgeExepction();
+            }
+
+            age = value;
+
+        }
+
+    }
 
     public Human(string name,int age)
     {
@@ -78,7 +95,7 @@ class Human : Humanoid
     public override void Walk()
     {
 
-        Console.WriteLine("Human is walking now");
+        Console.WriteLine("O humano está andando...");
     }
 
 
@@ -119,7 +136,7 @@ class Enemy
 class EnemyGenerator
 {
 
-    public bool generate()
+    public bool Generate()
     {
 
         Random random = new Random();
@@ -131,7 +148,7 @@ class EnemyGenerator
 
             Enemy enemy = new Enemy("Pato");
 
-            Console.WriteLine($"Você entrou em batalha !\nNome: { enemy.Name}\nPoder: {enemy.Power}");
+            Console.WriteLine($"Você entrou em batalha contra '{enemy.Name}'\nPoder: {enemy.Power}");
 
             return true;
 
@@ -148,7 +165,7 @@ class Game
 
     bool inBattle = false;
 
-    public void start()
+    public void Start()
     {
 
         Console.WriteLine("Por favor, informe o nome do seu Player:");
@@ -169,7 +186,7 @@ class Game
             if (Console.KeyAvailable)
             {
 
-                var foundEnemy = enemyGenerator.generate();
+                var foundEnemy = enemyGenerator.Generate();
 
                 if( foundEnemy)
                 {
@@ -261,7 +278,7 @@ namespace ConsoleApp1
 
             Game game = new Game();
 
-            game.start();
+            game.Start();
 
         }
 
