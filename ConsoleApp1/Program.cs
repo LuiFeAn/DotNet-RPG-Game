@@ -47,7 +47,7 @@ abstract class Humanoid
         Console.WriteLine($"Olá, meu nome é {name} e eu tenho {age} anos");
     }
 
-    public virtual void attack()
+    public virtual void Attack()
     {
 
     }
@@ -60,23 +60,6 @@ abstract class Humanoid
 
 class Human : Humanoid
 {
-    public override int Age
-    {
-        get { return age; }
-
-        set
-        {
-
-            if (age < 12)
-            {
-                ShowAgeExepction();
-            }
-
-            age = value;
-
-        }
-
-    }
 
     public Human(string name,int age)
     {
